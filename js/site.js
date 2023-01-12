@@ -1,60 +1,38 @@
-//get values from app page
-//start OR controller function
-function getValues() {
-    //get values from app page
-    let startValue = document.getElementById("startValue").value;
-    let endValue = document.getElementById("endValue").value;
-
-    //Validating our inputs
-    //parsing to Integers
-    startValue = parseInt(startValue);
-    endValue = parseInt(endValue);
-
-    //if inputs are numbers
-    if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
-        //call generateNumbers function
-        let numbers = generateNumbers(startValue, endValue);
-        //call displayNumbers function
-        displayNumbers(numbers);
-    }
-    //if inputs are not numbers
-    else {
-        alert("You must enter integers for Even-Handed to work!");
-    }    
-}
-
-//generate numbers from startValue to endValue
-//logic function(s)
-function generateNumbers(start, end) {
-    //create empty array
-    let numbers = [];
+//get string from app page
+//controller function
+function getValue() {
+    document.getElementById("alert").classList.add("invisible");
+    let userString = document.getElementById("userString").value;    
     
-    //generating numbers with for loop using start and end values
-    for(let index = start; index <= end; index++) {
-        //adding current number to array
-        numbers.push(index);
+    if (userString.length > 1) {
+        //call reverse string passing it the value of userString and setting that to revString
+        let backWords = reverseString(userString);
+        //calling displayString
+        displayString(backWords);
     }
-    return numbers;
+    else {
+        alert("You must enter at least 2 characters to reverse your string!");
+    }
+    
 }
 
-//display numbers and make even numbers bold
-//display OR view functions
-function displayNumbers(numbers) {
-
-    let templateRows = "";
-
-    for (let index = 0; index < numbers.length; index++) {
-        let className = "even";
-        let number = numbers[index];
-
-        if(number % 2 == 0) {
-            className = "even";
-        }
-        else {
-            className = "odd";
-        }
-        templateRows += `<tr><td class="${className}" >${number}</td></tr>`;
+//Reverse string
+//logic function
+function reverseString(userString) {
+    //initialize empty array
+    let backWords = [];
+    //reverse a string using a for loop
+    for (let index = userString.length - 1; index >= 0; index--) {
+        backWords += userString[index];
     }
-    document.getElementById("results").innerHTML = templateRows;
+    return backWords;
 }
 
+//Display reversed string to user
+//view function
+function displayString(backWords) {
+    //write to page
+    document.getElementById("msg").innerHTML = `Your string reversed is: ${backWords}`;
+    //show alert box
+    document.getElementById("alert").classList.remove("invisible");
+}

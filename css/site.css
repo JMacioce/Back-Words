@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #29738F;
+    --primary-color: #9b0500;
     --secondary-color: #F1E5D8;
     --dark-color: #292929;
     --white-color: #f3dfe9;
     --fa-color: #F1E5D8;
-    --fa2-color: #6096AA;
+    --fa2-color: #b31515;
 }
 
 .odd {
@@ -53,7 +53,15 @@ footer .brand>a:hover {
     opacity: 0.8;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h5 {
+    color: var(--primary-color);
+}
+
+h3, h4, h6 {
+    color: var(--dark-color);
+}
+
+.fa-li {
     color: var(--primary-color);
 }
 
@@ -96,3 +104,7 @@ main>.container {
     bottom: 0;
     width: 100%;
 }
+
+#msg {
+    word-wrap: break-word;
+    }
