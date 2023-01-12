@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Even-Handed: A Coding Project by Julian Macioce</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+    <link href="css/site.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.typekit.net/ijx1sel.css">
+    <link href="css/prism.css" rel="stylesheet">
+    <link rel="icon" type="image/png" href="img/favicon-32x32.png">
+</head>
+
+<body class="d-flex flex-column h-100">
+    <!-- Nav Section -->
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand logoFont" href="app.html"><img src="img/favicon-32x32.png" class="d-inline-block align-text-top" title="My Favourite Pokémon: Snorlax!" height="26"> EVEN-HANDED</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="code.html">The Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://github.com/JMacioce/Even-Handed">Git Repo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" target="_blank" href="https://julianmacioce.me/">About</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Section -->
+    <main class="flex-shrink-0">
+        <div class="container py-5 px-5 mt-5">
+            <h2 class="border-1 border-bottom border-dark">The Code for <span class="logoFont">Even-Handed</span></h2>
+            <div class="row row-cols-1 row-cols-lg-2">
+                <div class="col-lg-8">
+                    <pre class="line-numbers">
+                        <code class="language-javascript">
+                            //get values from app page
+                            //start OR controller function
+                            function getValues() {
+                                //get values from app page
+                                let startValue = document.getElementById("startValue").value;
+                                let endValue = document.getElementById("endValue").value;
+
+                                //Validating our inputs
+                                //parsing to Integers
+                                startValue = parseInt(startValue);
+                                endValue = parseInt(endValue);
+
+                                //if inputs are numbers
+                                if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+                                    //call generateNumbers function
+                                    let numbers = generateNumbers(startValue, endValue);
+                                    //call displayNumbers function
+                                    displayNumbers(numbers);
+                                }
+                                //if inputs are not numbers
+                                else {
+                                    alert("You must enter integers for Even-Handed to work!");
+                                }    
+                            }
+
+                            //generate numbers from startValue to endValue
+                            //logic function(s)
+                            function generateNumbers(start, end) {
+                                //create empty array
+                                let numbers = [];
+                                
+                                //generating numbers with for loop using start and end values
+                                for(let index = start; index <= end; index++) {
+                                    //adding current number to array
+                                    numbers.push(index);
+                                }
+                                return numbers;
+                            }
+
+                            //display numbers and make even numbers bold
+                            //display OR view functions
+                            function displayNumbers(numbers) {
+
+                                let templateRows = "";
+
+                                for (let index = 0; index < numbers.length; index++) {
+                                    let className = "even";
+                                    let number = numbers[index];
+
+                                    if(number % 2 == 0) {
+                                        className = "even";
+                                    }
+                                    else {
+                                        className = "odd";
+                                    }
+                                    //Prism.js has trouble displaying template literals, see source code
+                                    templateRows += `<tr><td class="${className}" >${number}</td></tr>`;
+                                }
+                                document.getElementById("results").innerHTML = templateRows;
+                            }
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-4">
+                    <p>The Code is structured in <strong>three</strong> functions</p>
+                    <h5>getValues</h5>
+                    <p>The <strong>getValues</strong> function gets user input from the app page. The function utilizes the <strong>getElementById</strong> to pull values
+                    from the page. It then passes those values to the <strong>generateNumbers</strong> function.
+                    The function <strong>generateNumbers</strong> then returns an array of values and passes that array to the <strong>displayNumbers</strong>
+                    function.</p>
+                    <h5>generateNumbers</h5>
+                    <p>The <strong>generateNumbers</strong> function takes in two parameters (<strong>startValue</strong> and <strong>endValue</strong>).
+                    We create a variable <strong>numbers</strong> that holds an array. We then use a for loop to generate all the numbers between
+                    <strong>startValue</strong> and <strong>endValue</strong>.</p>
+                    <h5>displayNumbers</h5>
+                    <p>The function <strong>displayNumbers</strong> takes in the parameter <strong>numbers</strong> (the variable is an array that holds the values
+                    between <strong>startValue</strong> and <strong>endValue</strong>). We create the variable <strong>className</strong> that holds the name of the CSS class
+                    we will use to bold the numbers. The variable <strong>templateRows</strong> is then created to hold the HTML we want to write to the app page.</p>
+                    <p>A for loop checks all the numbers to check if they are odd or even. The modulus operator (%) is used to check if a number is divisible by two, making it
+                    even, or else it is deemed odd. The correct <strong>className</strong> is then injected into the html row for display. Each iteration of the loop adds to the
+                    <strong>templateRows</strong> variable. When the loop is done, the resulting HTML rows are then written to our app page for display!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="footer mt-auto py-3 sticky-footer">
+        <div class="container-fluid">
+            <div class="row row-cols-1 row-cols-lg-3 gy-2">
+                <div class="col d-flex order-last order-lg-first text-light align-items-center justify-content-center">
+                    <div class="info-content"><span class="text-muted">&copy;2023</span> <a target="_blank" href="https://julianmacioce.me/" style="text-decoration:none">Julian Macioce</a> | <a href="mailto:macioce@uwindsor.ca" style="text-decoration:none">macioce@uwindsor.ca</a></div>
+                </div>
+                <div class="col d-flex align-items-center justify-content-center justify-content-lg-center brand">
+                    <a target="_blank" href="https://julianmacioce.me/"><img src="img/brandlogo.png" alt="Julian Macioce Logo" height="36" width="100" title="Visit My Website!"></a>                    
+                </div>
+                <div class="col d-flex align-items-center justify-content-center justify-content-lg-end">
+                    <div class="row">
+                        <div class="col social"><a href="https://www.linkedin.com/in/julianmacioce/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a></div>
+                        <div class="col social"><a href="https://github.com/JMacioce" target="_blank"><i class="fab fa-github fa-2x"></i></a></div>
+                        <!-- <div class="col social"><a href="#" target="_blank"><i class="fab fa-youtube fa-2x"></i></a></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="js/prism.js"></script>
+    <script>
+        Prism.plugins.NormalizeWhitespace.setDefaults({
+            'remove-trailing': true,
+            'remove-indent': true,
+            'left-trim': true,
+            'right-trim': true
+        })
+    </script>
+
+</body>
+
+</html>
